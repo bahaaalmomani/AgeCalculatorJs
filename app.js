@@ -14,15 +14,41 @@
 // This functions should check the integrity of the parameters and pass true/false
 function checkParamsFn(year, month, day) {
   // Write your code here
+  if (
+    typeof year === "number" &&
+    typeof month === "number" &&
+    typeof day === "number"
+  ) {
+    return true;
+  } else return false;
 }
+// console.log(checkParamsFn(1993, 9, "27"));
 
 // This functions checks if the person is or above 18 years of age, return true/false
 function checkOverEighteenFn(year, month, day) {
   // Write your code here
+  thisYear = new Date().toISOString().slice(0, 4);
+  thisMonth = new Date().toISOString().slice(5, 7);
+  thisDay = new Date().toISOString().slice(8, 10);
+  let age = thisYear - year;
+  if (age === 18 && month > thisMonth) return false;
+  else if (age >= 18) return true;
+  else return false;
 }
+// console.log(checkOverEighteenFn(2003, 8, 27));
 
 function calculateAgeFn(year, month, day) {
   // Write your code here
+  thisYear = new Date().toISOString().slice(0, 4);
+  let age = thisYear - year;
+  if (
+    checkParamsFn(year, month, day) === false ||
+    checkOverEighteenFn(year, month, day) === false
+  ) {
+    return "error:";
+  } else {
+    return Math.round(age);
+  }
 }
 
 // Look at the naming of the functions. it looks like salwaBaqer, where
